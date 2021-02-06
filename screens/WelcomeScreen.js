@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, StatusBar} from "react-native";
 
+// Old testing file -- currently not used
+
 function WelcomeScreen(props) {
     return (
         <View style={styles.container}>

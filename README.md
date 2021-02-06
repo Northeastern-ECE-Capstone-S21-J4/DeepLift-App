@@ -1,5 +1,5 @@
 
-To set up:
+SETTING UP:
 
 1. Install Homebrew: ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
 2. Update Homebrew: brew update
@@ -11,3 +11,6 @@ To set up:
 8. Start the app: expo start
 
 Also, install the Expo client app on your iOS or Android phone and connect to the same wireless network as your computer. On Android, use the Expo app to scan the QR code from your terminal to open your project. On iOS, use the built-in QR code scanner of the Camera app.
+
+TROUBLESHOOTING:
+1. Unable to resolve “./SafeAreaContext” -- follow this link: https://stackoverflow.com/questions/62205597/unable-to-resolve-safeareacontext
