@@ -1,0 +1,1 @@
+{"ast":null,"code":"","map":{"version":3,"sources":[],"names":[],"mappings":"","sourcesContent":["// @flow\n\nimport type {\n  NavigationContainer,\n  NavigationState,\n} from '@react-navigation/core';\n\nexport type Navigator = NavigationContainer<*, *, *>;\nexport type ReducerState = ?NavigationState;\n"]},"metadata":{},"sourceType":"script"}

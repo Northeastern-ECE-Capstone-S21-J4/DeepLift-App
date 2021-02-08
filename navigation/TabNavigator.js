@@ -5,7 +5,7 @@ import { PastWorkoutsStackNavigator, MainStackNavigator, ProfileStackNavigator }
 
 const Tab = createBottomTabNavigator();
 
-const BottomTabNavigator = () => {
+const TabNavigator = () => {
   return (
     <Tab.Navigator  screenOptions={({ route }) => ({
       tabBarIcon: ({ focused, color, size }) => {
@@ -32,4 +32,4 @@ const BottomTabNavigator = () => {
   );
 }
 
-export default BottomTabNavigator;
+export default TabNavigator;
