@@ -7,6 +7,8 @@ import Amplify from 'aws-amplify'
 import config from './aws-exports'
 Amplify.configure(config)
 
+import { withAuthenticator } from 'aws-amplify-react-native'
+
 // TO DO: need to do more research on Provider
 // const store = createStore(AppReducer, applyMiddleware(middleware));
 class StarterApp extends React.Component {
@@ -24,4 +26,4 @@ class StarterApp extends React.Component {
 
 AppRegistry.registerComponent("StarterApp", () => StarterApp);
 
-export default StarterApp;
+export default withAuthenticator(StarterApp);
