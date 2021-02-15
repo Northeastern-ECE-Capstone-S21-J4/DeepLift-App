@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "deepliftapped183190": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
