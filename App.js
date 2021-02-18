@@ -1,6 +1,6 @@
 import React from 'react';
 import { APIHelper } from "./lib/api/api.js"
-import { AppRegistry, Text } from "react-native";
+import { AppRegistry } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import BottomTabNavigator from "./navigation/TabNavigator";
 
