@@ -10,7 +10,7 @@ var apiHelper = new APIHelper("https://api.deepliftcapstone.xyz");//"http://127.
 
 class StarterApp extends React.Component {
   async componentDidMount(){
-    await apiHelper.getToken("sam", "3AYnpU7p46fr");
+    await apiHelper.getToken("username", "password");
     apiHelper.getUsers();
     apiHelper.getUserById(1);
     apiHelper.getWorkoutById(1);
