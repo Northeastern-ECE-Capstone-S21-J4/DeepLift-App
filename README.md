@@ -1,6 +1,5 @@
 
 GENERAL SETUP:
-
 1. Install Homebrew: ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
 2. Update Homebrew: brew update
 3. Install Node: brew install node
@@ -21,3 +20,6 @@ AMPLIFY SETUP:
 
 TROUBLESHOOTING:
 1. Unable to resolve “./SafeAreaContext” -- follow this link: https://stackoverflow.com/questions/62205597/unable-to-resolve-safeareacontext
+
+HELPFUL LINKS:
+1. Amplify CSS: https://github.com/aws-amplify/amplify-js/blob/main/packages/aws-amplify-react/src/Amplify-UI/Amplify-UI-Theme-Sample.tsx
