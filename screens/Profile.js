@@ -13,7 +13,7 @@ const Profile = () => {
 
 async function signOut() {
   try {
-      await Auth.signOut({ global: true });
+      await Auth.signOut();
   } catch (error) {
       console.log('error signing out: ', error);
   }
