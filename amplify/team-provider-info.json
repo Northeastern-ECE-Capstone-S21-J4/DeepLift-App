@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-deepliftapp-dev-121456-authRole",
+      "UnauthRoleArn": "arn:aws:iam::176944131608:role/amplify-deepliftapp-dev-121456-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::176944131608:role/amplify-deepliftapp-dev-121456-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-deepliftapp-dev-121456-deployment",
+      "UnauthRoleName": "amplify-deepliftapp-dev-121456-unauthRole",
+      "StackName": "amplify-deepliftapp-dev-121456",
+      "StackId": "arn:aws:cloudformation:us-east-1:176944131608:stack/amplify-deepliftapp-dev-121456/56b73e70-6afa-11eb-a1bc-0e4121f4bda3",
+      "AmplifyAppId": "d1cg8h3n9mh7hj"
+    },
+    "categories": {
+      "auth": {
+        "deepliftapped183190": {}
+      }
+    }
+  }
+}
