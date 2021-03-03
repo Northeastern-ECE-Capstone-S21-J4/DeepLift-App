@@ -3,17 +3,7 @@ import { APIHelper } from "./lib/api/api.js"
 import { AppRegistry } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import BottomTabNavigator from "./navigation/TabNavigator";
-import { Amplify, Auth } from 'aws-amplify';
-import config from './aws-exports';
-import { withAuthenticator, AmplifyTheme } from 'aws-amplify-react-native';
 
-Amplify.configure(config)
-
-const MyButton = Object.assign({}, AmplifyTheme.button, { backgroundColor: '#9AC4F8', textAlign: 'center', verticalAlign: 'middle', height: '60px', borderRadius: '5px',});
-const MyTheme = Object.assign({}, AmplifyTheme, { button: MyButton });
-
-// TO DO: need to do more research on Provider
-// const store = createStore(AppReducer, applyMiddleware(middleware));
 var apiHelper = new APIHelper("https://api.deepliftcapstone.xyz");//"http://127.0.0.1:8000");
 
 class StarterApp extends React.Component {
@@ -36,12 +26,6 @@ class StarterApp extends React.Component {
   }
 }
 
-async function getCurrentUser() {
-  const { attributes } = await Auth.currentAuthenticatedUser();
-  const userEmail = attributes.email;
-  return userEmail;
-}
-
 AppRegistry.registerComponent("StarterApp", () => StarterApp);
 
-export default withAuthenticator(StarterApp, false, [], null, MyTheme);
+export default StarterApp;
