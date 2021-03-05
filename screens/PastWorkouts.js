@@ -3,18 +3,23 @@ import { View, StyleSheet, Text } from "react-native";
 
 const PastWorkouts = () => {
   return (
-    <View style={styles.center}>
-      <Text>This is the past workout screen</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Past Workouts: </Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
+  title: {
+    fontWeight: 'bold',
+    color: '#31373b',
+    fontSize: 20,
+    margin: 20
+  },
+  container: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
   },
 });
 

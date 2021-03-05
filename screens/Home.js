@@ -17,23 +17,31 @@ const Home = ({ navigation }) => {
   
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Select Workout: </Text>
+      <View>
       {exercises.map((exercise) => {return <Button title={exercise.exerciseName} 
                                             key={exercise.exerciseID} 
-                                            style={styles.exerciseButton}
+                                            style={styles.exerciseItem}
+                                            color="#62a4f5"
                                             onPress={() => navigation.navigate("About")}/>})}
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
+  title: {
+    fontWeight: 'bold',
+    color: '#31373b',
+    fontSize: 20,
+    margin: 20
   },
-  exerciseButton: {
-    color: '#9AC4F8'
+  container: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+  },
+  exerciseItem: {
   }
 });
 
