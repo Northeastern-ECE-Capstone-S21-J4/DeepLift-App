@@ -19,11 +19,11 @@ const Home = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.title}>Select Workout: </Text>
       <View>
-      {exercises.map((exercise) => {return <Button title={exercise.exerciseName} 
+      {exercises.map((exercise) => {return <Button title={exercise.exerciseName.toUpperCase()} 
                                             key={exercise.exerciseID} 
                                             style={styles.exerciseItem}
                                             color="#62a4f5"
-                                            onPress={() => navigation.navigate("About")}/>})}
+                                            onPress={() => navigation.navigate("PreWorkout")}/>})}
       </View>
     </View>
   );
@@ -34,14 +34,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#31373b',
     fontSize: 20,
-    margin: 20
+    margin: "5%"
   },
   container: {
+    flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'stretch',
   },
   exerciseItem: {
+    margin: "10%"
   }
 });
 

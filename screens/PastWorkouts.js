@@ -14,9 +14,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#31373b',
     fontSize: 20,
-    margin: 20
+    margin: "5%"
   },
   container: {
+    flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'stretch',
