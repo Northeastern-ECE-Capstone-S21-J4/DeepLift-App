@@ -4,6 +4,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { APIHelper } from '../lib/api/api';
 import { User } from '../lib/user/user';
 
+global.session;
+
 class LoginScreen extends Component {
     constructor() {
         super();
@@ -21,14 +23,27 @@ class LoginScreen extends Component {
     }
 
     async login() {
-        var user = new User(this.state.userName, this.state.pw);
-        var apiHelper = new APIHelper("https://api.deepliftcapstone.xyz");//"http://127.0.0.1:8000");//
-        var res = await apiHelper.login(user);
-        if(apiHelper.checkError()){
-            Alert.alert("Login Failed", "apiHelper.lastError", [ {text: "OK"}])
-            console.log(apiHelper.lastError);
+        session.setUserName(this.state.userName);
+        session.setPW(this.state.pw);
+        var loginStatusCode = await session.login();
+        if(loginStatusCode == 200){
+
+        } else if (loginStatusCode == 403){
+            alert("Error",
+                  "Invalid username or password",
+                  [
+                      {
+                          text: "OK"
+                      }
+                  ]);
         } else {
-            console.log(res);
+            alert(`Error ${loginStatusCode}`,
+                  "An error occured during login",
+                  [
+                    {
+                        text: "OK"
+                    }
+                  ]);
         }
     }
     
