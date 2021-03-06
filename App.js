@@ -22,19 +22,14 @@ class StarterApp extends React.Component {
     console.log(users);
     await session.loadAllSessionVars();
     this.needsLogin = await session.checkLogin();
-    // if(this.needsLogin){
-    //   session.setUserName('bigjohn');
-    //   session.setPW('password');
-    //   await session.login();
-    // }
   }
 
   render() {
-    // if(this.needsLogin){
-    //   return(
-    //     <LoginScreen />
-    //   )
-    // }
+    if(this.needsLogin){
+      return(
+        <LoginScreen />
+      )
+    }
 
     return (
       <SafeAreaView>
