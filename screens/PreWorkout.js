@@ -2,7 +2,6 @@ import React, { useState }  from "react";
 import { View, StyleSheet, Text, TextInput, Button } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
 
-// TO DO: can rename this file to something that makes more sense, like StartWorkout
 const PreWorkout = ({ navigation }) => {
   const [weight, onChangeWeight] = useState('');
 
@@ -16,7 +15,7 @@ const PreWorkout = ({ navigation }) => {
       <View style={styles.bottomRow}>
         <FontAwesome.Button name="qrcode" style={styles.button} 
                                           backgroundColor="#62a4f5"
-                                          onPress={() => navigation.navigate("Home")}>
+                                          onPress={() => navigation.navigate("QRCodePage")}>
           Connect to Mirror</FontAwesome.Button>
         <FontAwesome.Button name="mobile" style={styles.button} 
                                           backgroundColor="#62a4f5"
