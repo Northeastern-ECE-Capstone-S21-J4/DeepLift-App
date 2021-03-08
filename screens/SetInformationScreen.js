@@ -14,6 +14,7 @@ export default class SetInformationScreen extends Component {
             return;
         }
         this.setState({ reps: text })
+        console.log("ye");
     };
 
     //TODO: previewBox will display a preview of the recorded workout
@@ -40,7 +41,7 @@ export default class SetInformationScreen extends Component {
                             onChangeText={this.handleReps}/>
                     </View>
                     <TouchableOpacity
-                        style={styles.submitButton}>
+                        style={styles.submitButton} >
                         <Text style={{color: "white"}}>Save Exercise</Text>
                     </TouchableOpacity>
                 </View>
