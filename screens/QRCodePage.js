@@ -17,7 +17,7 @@ const QRCodePage = ({ navigation }) => {
                     onChangeText={inputDifficulty => onChangeDifficulty(inputDifficulty)}/>
         </View>
         <Ionicons name='stop-circle-outline' size={50} color="black"
-                  onLongPress={() => navigation.navigate("PastWorkouts")}/>
+                  onPress={() => navigation.navigate("LoadingPage")}/>
       </View>
     </TouchableWithoutFeedback>
   );

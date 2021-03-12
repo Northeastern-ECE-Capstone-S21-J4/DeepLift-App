@@ -6,6 +6,7 @@ import PreWorkout from "../screens/PreWorkout";
 import Profile from "../screens/Profile";
 import PastWorkouts from "../screens/PastWorkouts";
 import QRCodePage from "../screens/QRCodePage";
+import LoadingPage from "../screens/LoadingPage";
 
 const Stack = createStackNavigator();
 
@@ -37,6 +38,7 @@ const MainStackNavigator = () => {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="PreWorkout" component={PreWorkout} />
       <Stack.Screen name="QRCodePage" component={QRCodePage} />
+      <Stack.Screen name="LoadingPage" component={LoadingPage} />
     </Stack.Navigator>
   );
 };
