@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
   },
   exerciseItem: {
-    margin: "10%"
+    margin: "10%",
   }
 });
 
