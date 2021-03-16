@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Home from "../screens/Home";
 import About from "../screens/About";
+import LoginScreen from "../screens/Login";
 import Profile from "../screens/Profile";
 import PastWorkouts from "../screens/PastWorkouts";
 
@@ -35,6 +36,7 @@ const MainStackNavigator = () => {
     <Stack.Navigator screenOptions={screenOptionStyle}>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="About" component={About} />
+      <Stack.Screen name="Login" component={LoginScreen} />
     </Stack.Navigator>
   );
 };
