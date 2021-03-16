@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { SafeAreaView, TextInput, Text, StyleSheet, Alert  } from 'react-native'
+import { SafeAreaView, TextInput, Text, StyleSheet, Alert, Button } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { APIHelper } from '../lib/api/api';
-import { User } from '../lib/user/user';
+import { navigate } from "../navigation/RootNavigation.js";
 
 global.session;
 
@@ -16,18 +15,12 @@ class LoginScreen extends Component {
         }
     }
 
-    setResponse(res){
-        console.log(res);
-        console.log(this);
-        this.setState({response: res});
-    }
-
     async login() {
         session.setUserName(this.state.userName);
         session.setPW(this.state.pw);
         var loginStatusCode = await session.login();
         if(loginStatusCode == 200){
-
+            navigate("Home");
         } else if (loginStatusCode == 403){
             alert("Error",
                   "Invalid username or password",
@@ -51,14 +44,16 @@ class LoginScreen extends Component {
          return (
              <SafeAreaView>
                  <TextInput
-                 style={{paddingTop:10}}  
+                 style={{paddingTop:10}} 
+                 autoCapitalize="none"
                  placeholder="Username"
                  onChangeText={text => this.setState({userName: text})} />
                  <TextInput 
                  placeholder="Password"
+                 secureTextEntry={true}
                  onChangeText={text => this.setState({pw: text})}/>
-                <TouchableOpacity onPress={() => this.login()}
-                style={styles.submitButton}><Text>Submit</Text></TouchableOpacity>
+                <Button onPress={() => this.login()}
+                title="Submit" />
              </SafeAreaView>
          )
      }
@@ -68,38 +63,6 @@ const styles = StyleSheet.create({
     area: {
         flex: 1,
         flexDirection: "column"
-    },
-    previewBox: {
-        flex: 3,
-        backgroundColor: "black",
-        color: "white"
-    },
-    uiBox: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column"
-    },
-    infoEnterBox: {
-        flex: 1,
-        flexDirection: "row",
-        justifyContent: 'center',
-        alignContent: 'center',
-        paddingTop: '3%'
-    },
-    picker: {
-        flex: 4,
-        borderWidth: 2,
-        borderColor: "black",
-        margin: 10
-    },
-    repBox: {
-        flex: 1,
-        textAlign: 'center',
-        borderWidth: 1,
-        borderColor: 'black',
-        margin: 10,
-        borderRadius: 4
     },
     submitButton: {
         alignItems: 'center',
