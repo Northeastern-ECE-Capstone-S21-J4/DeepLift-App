@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { SafeAreaView, TextInput, Text, StyleSheet, Alert  } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { APIHelper } from '../lib/api/api';
-import { User } from '../lib/user/user';
+import { navigate } from "../navigation/RootNavigation.js";
 
 global.session;
 
@@ -16,18 +15,12 @@ class LoginScreen extends Component {
         }
     }
 
-    setResponse(res){
-        console.log(res);
-        console.log(this);
-        this.setState({response: res});
-    }
-
     async login() {
         session.setUserName(this.state.userName);
         session.setPW(this.state.pw);
         var loginStatusCode = await session.login();
         if(loginStatusCode == 200){
-
+            navigate("Home");
         } else if (loginStatusCode == 403){
             alert("Error",
                   "Invalid username or password",

@@ -6,6 +6,7 @@ import LoginScreen from "./screens/Login.js"
 import { NavigationContainer, StackActions } from "@react-navigation/native";
 import BottomTabNavigator from "./navigation/TabNavigator";
 import { MainStackNavigator } from "./navigation/StackNavigator.js";
+import { navigationRef, navigate } from "./navigation/RootNavigation.js";
 import { Session } from './lib/user/session.js';
 
 global.session = new Session();
@@ -17,26 +18,24 @@ class StarterApp extends React.Component {
   }
 
   async componentDidMount(){
-    //await session.wipeSessionVars();
-    var users = await session.apiInstance.getUsers();
-    console.log(users);
     await session.loadAllSessionVars();
     this.needsLogin = await session.checkLogin();
+    if(this.needsLogin){
+      navigate("Login");
+    }
   }
 
   render() {
-    if(this.needsLogin){
-      return(
-        <LoginScreen />
-      )
-    }
+    // if(this.needsLogin){
+    //   return(
+    //     <LoginScreen />
+    //   )
+    // }
 
     return (
-      <SafeAreaView>
-        <NavigationContainer>
-          <MainStackNavigator />
-        </NavigationContainer>
-      </SafeAreaView>
+      <NavigationContainer ref={navigationRef}>
+        <MainStackNavigator />
+      </NavigationContainer>
     );
   }
 }
