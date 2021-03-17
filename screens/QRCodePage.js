@@ -19,10 +19,20 @@ const QRCodePage = ({ route, navigation }) => {
                     onChangeText={inputDifficulty => onChangeDifficulty(inputDifficulty)}/>
         </View>
         <Ionicons name='stop-circle-outline' size={50} color="black"
-                  onPress={() => navigation.navigate("LoadingPage")}/>
+                  onPress={() => endWorkout()}/>
       </View>
     </TouchableWithoutFeedback>
   );
+
+  function endWorkout() {
+    navigation.navigate("LoadingPage");
+    const requestOptions = {
+      method: 'PUT',
+      headers: { 'accept': 'application/json' }
+  };
+  fetch(`https://api.deepliftcapstone.xyz/workouts/yajingwang1022/end/${weight}`, requestOptions)
+      .then(response => console.log(response.json()));
+  }
 };
 
 const styles = StyleSheet.create({
