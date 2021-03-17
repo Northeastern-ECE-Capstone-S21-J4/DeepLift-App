@@ -3,13 +3,15 @@ import { View, StyleSheet, Text, TextInput, Keyboard, TouchableWithoutFeedback }
 import QRCode from 'react-native-qrcode-svg';
 import { Ionicons } from '@expo/vector-icons';
   
-const QRCodePage = ({ navigation }) => {
+const QRCodePage = ({ route, navigation }) => {
   const [Difficulty, onChangeDifficulty] = useState('');
+  const { exerciseID, weight } = route.params;
+  const QRStringValue = JSON.stringify({username: "yajingwang1022", exerciseID: exerciseID, weight: weight});
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={styles.container}>
         <Text style={styles.text1} >Scan to start a workout: </Text>
-        <QRCode value={"{data: DeepLift is the best}"} size={200} color="#62a4f5"/>
+        <QRCode value={QRStringValue} size={200} color="#62a4f5"/>
         <View style={styles.row}>
           <Text style={styles.text2} >Difficulty Level {"\n"}(1 easy - 10 hard): </Text>
           <TextInput style={styles.textField}

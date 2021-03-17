@@ -2,13 +2,14 @@ import React, { useState }  from "react";
 import { View, StyleSheet, Text, TextInput, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
 
-const PreWorkout = ({ navigation }) => {
+const PreWorkout = ({ route, navigation }) => {
   const [weight, onChangeWeight] = useState('');
+  const { exerciseID } = route.params;
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={styles.container}>
-        <Text style={styles.text1} >Please enter weight (kg/lb): </Text>
+        <Text style={styles.text1} >Please enter weight (lb): </Text>
         <TextInput style={styles.textField}
                   keyboardType="number-pad"
                   onChangeText={inputWeight => onChangeWeight(inputWeight)}/>
@@ -16,7 +17,9 @@ const PreWorkout = ({ navigation }) => {
         <View style={styles.bottomRow}>
           <FontAwesome.Button name="qrcode" style={styles.button} 
                                             backgroundColor="#62a4f5"
-                                            onPress={() => navigation.navigate("QRCodePage")}>
+                                            onPress={() => navigation.navigate("QRCodePage",
+                                            { exerciseID: exerciseID,
+                                              weight: weight })}>
             Connect to Mirror</FontAwesome.Button>
           <FontAwesome.Button name="mobile" style={styles.button} 
                                             backgroundColor="#62a4f5"

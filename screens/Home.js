@@ -23,7 +23,8 @@ const Home = ({ navigation }) => {
                                             key={exercise.exerciseID} 
                                             style={styles.exerciseItem}
                                             color="#62a4f5"
-                                            onPress={() => navigation.navigate("PreWorkout")}/>})}
+                                            onPress={() => navigation.navigate("PreWorkout", 
+                                            {exerciseID: exercise.exerciseID})}/>})}
       </View>
     </View>
   );

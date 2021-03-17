@@ -9,7 +9,7 @@ import { withAuthenticator, AmplifyTheme } from 'aws-amplify-react-native';
 
 Amplify.configure(config)
 
-const MyButton = Object.assign({}, AmplifyTheme.button, { backgroundColor: '#62a4f5', textAlign: 'center', verticalAlign: 'middle', height: '60px', borderRadius: '5px',});
+const MyButton = Object.assign({}, AmplifyTheme.button, { backgroundColor: '#62a4f5', textAlign: 'center', verticalAlign: 'middle', borderRadius: '5px',});
 const MyTheme = Object.assign({}, AmplifyTheme, { button: MyButton });
 
 // TO DO: need to do more research on Provider
