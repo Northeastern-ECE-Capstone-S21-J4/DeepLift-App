@@ -18,6 +18,7 @@
     "aws-amplify": "^3.3.19",
     "aws-amplify-react-native": "^4.3.1",
     "expo": "~40.0.0",
+    "expo-av": "~8.7.0",
     "expo-camera": "~9.1.0",
     "expo-cli": "^4.1.6",
     "expo-permissions": "~10.0.0",
