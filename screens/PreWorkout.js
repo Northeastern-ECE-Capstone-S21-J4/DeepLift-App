@@ -1,14 +1,14 @@
 import React, { useState }  from "react";
-import { View, StyleSheet, Text, TextInput, Keyboard, TouchableWithoutFeedback } from "react-native";
+import { View, ScrollView, StyleSheet, Text, TextInput, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
 
 const PreWorkout = ({ route, navigation }) => {
   const [weight, onChangeWeight] = useState('');
-  const { exerciseID } = route.params;
+  const { username, exerciseName, exerciseID } = route.params;
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <View style={styles.container}>
+      <ScrollView>
         <Text style={styles.text1} >Please enter weight (lb): </Text>
         <TextInput style={styles.textField}
                   keyboardType="number-pad"
@@ -17,18 +17,30 @@ const PreWorkout = ({ route, navigation }) => {
         <View style={styles.bottomRow}>
           <FontAwesome.Button name="qrcode" style={styles.button} 
                                             backgroundColor="#62a4f5"
-                                            onPress={() => navigation.navigate("QRCodePage",
-                                            { exerciseID: exerciseID,
-                                              weight: weight })}>
+                                            onPress={() => startWorkout()}>
             Connect to Mirror</FontAwesome.Button>
           <FontAwesome.Button name="mobile" style={styles.button} 
                                             backgroundColor="#62a4f5"
                                             onPress={() => navigation.navigate("Home")}>
             Use Phone Camera</FontAwesome.Button>
         </View>
-      </View>
+      </ScrollView>
     </TouchableWithoutFeedback>
   );
+
+  function startWorkout() {
+    const requestOptions = {
+      method: 'PUT',
+      headers: { 'accept': 'application/json' }
+    };
+  fetch(`https://api.deepliftcapstone.xyz/workouts/user/${username}/start`, requestOptions)
+      .then(response => console.log(response.json()));
+    navigation.navigate("QRCodePage",
+                                            { username: username,
+                                              exerciseName: exerciseName,
+                                              exerciseID: exerciseID,
+                                              weight: weight });
+  }
 };
 
 const styles = StyleSheet.create({

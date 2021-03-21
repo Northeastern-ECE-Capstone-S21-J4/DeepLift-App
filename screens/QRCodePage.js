@@ -4,9 +4,10 @@ import QRCode from 'react-native-qrcode-svg';
 import { Ionicons } from '@expo/vector-icons';
   
 const QRCodePage = ({ route, navigation }) => {
-  const [Difficulty, onChangeDifficulty] = useState('');
-  const { exerciseID, weight } = route.params;
-  const QRStringValue = JSON.stringify({username: "yajingwang1022", exerciseID: exerciseID, weight: weight});
+  const [difficulty, onChangeDifficulty] = useState('');
+  const { username, exerciseName, exerciseID, weight } = route.params;
+  const QRStringValue = JSON.stringify({username: username , exerciseName: exerciseName,
+    exerciseID: exerciseID, weight: weight});
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={styles.container}>
@@ -30,7 +31,7 @@ const QRCodePage = ({ route, navigation }) => {
       method: 'PUT',
       headers: { 'accept': 'application/json' }
   };
-  fetch(`https://api.deepliftcapstone.xyz/workouts/yajingwang1022/end/${weight}`, requestOptions)
+  fetch(`https://api.deepliftcapstone.xyz/workouts/user/${username}/end/${difficulty}`, requestOptions)
       .then(response => console.log(response.json()));
   }
 };
