@@ -27,9 +27,11 @@ const QRCodePage = ({ route, navigation }) => {
 
   function endWorkout() {
     navigation.navigate("LoadingPage");
+    const TEMP_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoieWFqaW5nd2FuZzEwMjIiLCJleHBpcmVzIjoxNjE5ODQxNjAwLjB9.BtxFdI0uWoHyakfLSNm82QTQyBLX2wQhriRB6Ywb75k";
     const requestOptions = {
       method: 'PUT',
-      headers: { 'accept': 'application/json' }
+      headers: { 'Authorization': 'Bearer ' +  TEMP_TOKEN,
+      'Content-Type': 'application/json' }
   };
   fetch(`https://api.deepliftcapstone.xyz/workouts/user/${username}/end/${difficulty}`, requestOptions)
       .then(response => console.log(response.json()));

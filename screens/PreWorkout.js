@@ -29,9 +29,11 @@ const PreWorkout = ({ route, navigation }) => {
   );
 
   function startWorkout() {
+    const TEMP_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoieWFqaW5nd2FuZzEwMjIiLCJleHBpcmVzIjoxNjE5ODQxNjAwLjB9.BtxFdI0uWoHyakfLSNm82QTQyBLX2wQhriRB6Ywb75k";
     const requestOptions = {
       method: 'PUT',
-      headers: { 'accept': 'application/json' }
+      headers: { 'Authorization': 'Bearer ' + TEMP_TOKEN,
+      'Content-Type': 'application/json'}
     };
   fetch(`https://api.deepliftcapstone.xyz/workouts/user/${username}/start`, requestOptions)
       .then(response => console.log(response.json()));
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
   },
   text2: {
     fontSize: 16,
-    marginTop: "20%",
+    marginVertical: "20%",
     marginHorizontal: "10%",
   },
   textField: {
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: 135,
-    height: "30%",
+    height: 50
   },
   bottomRow: {
     flexDirection: 'row',
