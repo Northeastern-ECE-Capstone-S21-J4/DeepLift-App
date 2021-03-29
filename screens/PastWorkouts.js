@@ -4,12 +4,60 @@ import { Video, AVPlaybackStatus } from 'expo-av';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 const PastWorkouts = () => {
-  const { width, height } = Dimensions.get('window');
+  const { width } = Dimensions.get('window');
   const video = React.useRef(null);
   const [status, setStatus] = React.useState({});
   const [isEnabled, setIsEnabled] = React.useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-  const [sortBy, setSortBy] = React.useState("1");
+  const [sortBy, setSortBy] = React.useState("dateRecorded");
+  const dropdownItems = [{label: 'Most Recent', value: "dateRecorded"}, 
+                          {label: 'Exercise Type', value: "exerciseName"},
+                          {label: 'Reps Count', value: "reps"},
+                          {label: 'Lifted Weight', value: "weight"},
+                          {label: 'Difficulty', value: "difficulty"},
+                        ];
+
+
+  const username = "yajingwang1022";
+  const [workouts, setWorkouts] = React.useState([]);
+  const fetchWorkouts = async () => {
+    const response = await fetch(`https://api.deepliftcapstone.xyz/workouts/user/${username}`);
+    const workouts = await response.json();
+    setWorkouts(workouts);
+  };
+
+  React.useEffect(() => {
+    fetchWorkouts()
+  }, [])
+
+  const refreshWorkouts = (sb) => {
+    setSortBy(sb);
+    sortWorkouts(sb);
+  };
+
+  const sortWorkouts = (sb) => {
+    switch(sb) {
+      case "dateRecorded":
+        workouts.sort((a, b) => a.dateRecorded - b.dateRecorded);
+        break;
+      case "exerciseName":
+        workouts.sort((a, b) => a.exerciseName.toLowerCase() - b.exerciseName.toLowerCase());
+        break;
+      case "reps":
+        workouts.sort((a, b) => a.reps - b.reps);
+        break;
+      case "weight":
+        workouts.sort((a, b) => a.weight - b.weight);
+        break;
+      case "difficulty":
+        workouts.sort((a, b) => a.difficulty - b.difficulty);
+        break;
+      default:
+        Alert.alert("Ooops");
+      }
+      console.log(workouts);
+  };
+
   return (
     <ScrollView style={styles.container}>
       <View>
@@ -50,7 +98,7 @@ const PastWorkouts = () => {
       <View>
         <View style={styles.row2}>
           <Text style={styles.subtitle}>All workouts: </Text>
-          <DropDownPicker items={[{label: 'Most Recent', value: "1"}, {label: 'Exercise Type', value: "2"}]}
+          <DropDownPicker items={dropdownItems}
           style={{backgroundColor: 'white'}}
           containerStyle={{width: "45%"}}
           dropDownStyle={{backgroundColor: 'white'}}
@@ -58,10 +106,9 @@ const PastWorkouts = () => {
           activeItemStyle={{backgroundColor: '#bad5f7'}}
           placeholder="Sort by"
           defaultValue={sortBy}
-          onChangeItem={item => setSortBy(item.value)}
+          onChangeItem={item => refreshWorkouts(item.value)}
           />
         </View>
-        {sortBy=="1"? <Text>Most Recent</Text>:<Text>Exercise Type</Text>}
       </View>
     </ScrollView>
   );
