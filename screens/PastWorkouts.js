@@ -11,7 +11,8 @@ const PastWorkouts = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.title}>Past Workouts: </Text>
+      <Text style={styles.title}>Past Workouts</Text>
+      <Text style={styles.subtitle}>Last workout: </Text>
       <View style={styles.showAnalytics}>
         <Text style={styles.showAnalyticsText}>Show Analytics </Text>
         <Switch
@@ -25,7 +26,7 @@ const PastWorkouts = () => {
       </View>
       {isEnabled? <Video
         ref={video}
-	      source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
+	      source={{ uri: 'https://videos-bucket-0001.s3.amazonaws.com/11/video_without.mp4' }}
         shouldPlay={false}
 	      useNativeControls
         resizeMode="cover"
@@ -54,6 +55,13 @@ const styles = StyleSheet.create({
     color: '#31373b',
     fontSize: 20,
     margin: "5%",
+    marginBottom: 0
+  },
+  subtitle: {
+    fontWeight: 'bold',
+    color: '#31373b',
+    fontSize: 15,
+    margin: "3%",
     marginBottom: 0
   },
   showAnalytics: {

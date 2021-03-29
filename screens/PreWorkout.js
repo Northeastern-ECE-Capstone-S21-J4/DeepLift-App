@@ -17,7 +17,7 @@ const PreWorkout = ({ route, navigation }) => {
         <View style={styles.bottomRow}>
           <FontAwesome.Button name="qrcode" style={styles.button} 
                                             backgroundColor="#62a4f5"
-                                            onPress={() => startWorkout()}>
+                                            onPress={() => startWorkoutOnMirror()}>
             Connect to Mirror</FontAwesome.Button>
           <FontAwesome.Button name="mobile" style={styles.button} 
                                             backgroundColor="#62a4f5"
@@ -28,12 +28,12 @@ const PreWorkout = ({ route, navigation }) => {
     </TouchableWithoutFeedback>
   );
 
-  function startWorkout() {
+  function startWorkoutOnMirror() {
     const TEMP_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoieWFqaW5nd2FuZzEwMjIiLCJleHBpcmVzIjoxNjE5ODQxNjAwLjB9.BtxFdI0uWoHyakfLSNm82QTQyBLX2wQhriRB6Ywb75k";
     const requestOptions = {
       method: 'PUT',
       headers: { 'Authorization': 'Bearer ' + TEMP_TOKEN,
-      'Content-Type': 'application/json'}
+      'accept': 'application/json'}
     };
   fetch(`https://api.deepliftcapstone.xyz/workouts/user/${username}/start`, requestOptions)
       .then(response => console.log(response.json()));

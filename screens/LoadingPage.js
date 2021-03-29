@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, ActivityIndicator } from "react-native";
 
 const LoadingPage = ({ navigation }) => {
   setTimeout(() => {
-    navigation.navigate('PastWorkouts');
+    navigation.navigate('Home');
   }, 2000); 
 
   return (
