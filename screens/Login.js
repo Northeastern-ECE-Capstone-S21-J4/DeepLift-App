@@ -39,6 +39,10 @@ class LoginScreen extends Component {
                   ]);
         }
     }
+
+    async goToSignup(){
+
+    }
     
     render() {
          return (
@@ -53,7 +57,8 @@ class LoginScreen extends Component {
                  secureTextEntry={true}
                  onChangeText={text => this.setState({pw: text})}/>
                 <Button onPress={() => this.login()}
-                title="Submit" />
+                title="Log In" />
+                <Button onPress={() => navigate("Signup")} />
              </SafeAreaView>
          )
      }
