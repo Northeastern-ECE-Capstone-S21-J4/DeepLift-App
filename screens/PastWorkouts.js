@@ -1,9 +1,9 @@
 import React from "react";
-import { ScrollView, StyleSheet, Text, Dimensions, Switch, View } from "react-native";
+import { ScrollView, StyleSheet, Text, Dimensions, Switch, View, Button } from "react-native";
 import { Video, AVPlaybackStatus } from 'expo-av';
 import DropDownPicker from 'react-native-dropdown-picker';
 
-const PastWorkouts = () => {
+const PastWorkouts = ({ navigation }) => {
   const { width } = Dimensions.get('window');
   const video = React.useRef(null);
   const [status, setStatus] = React.useState({});
@@ -38,7 +38,7 @@ const PastWorkouts = () => {
   const sortWorkouts = (sb) => {
     switch(sb) {
       case "dateRecorded":
-        workouts.sort((a, b) => a.dateRecorded - b.dateRecorded);
+        workouts.sort((a, b) => a.dateRecorded.split('-').join('') - b.dateRecorded.split('-').join(''));
         break;
       case "exerciseName":
         workouts.sort((a, b) => a.exerciseName.toLowerCase() - b.exerciseName.toLowerCase());
@@ -59,11 +59,12 @@ const PastWorkouts = () => {
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
+      <Text style={styles.title}>Past Workouts</Text>
+      <ScrollView>
       <View>
-        <Text style={styles.title}>Past Workouts</Text>
         <View style={styles.row1}>
-          <Text style={styles.subtitle}>Last workout: </Text>
+          <Text style={styles.subtitle1}>Last workout: </Text>
             <Text style={styles.showAnalyticsText}>Show Analytics </Text>
             <Switch
               style={styles.showAnalyticsSwitch}
@@ -76,7 +77,7 @@ const PastWorkouts = () => {
         {isEnabled?
         <Video
         ref={video}
-        source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
+        source={{ uri: 'https://videos-bucket-0001.s3.amazonaws.com/27/video_with.mp4' }}
         shouldPlay={false}
         useNativeControls
         resizeMode="stretch"
@@ -86,7 +87,7 @@ const PastWorkouts = () => {
         /> :
         <Video
         ref={video}
-        source={{ uri: 'https://videos-bucket-0001.s3.amazonaws.com/11/video_without.mp4' }}
+        source={{ uri: 'https://videos-bucket-0001.s3.amazonaws.com/27/video_without.mp4' }}
         shouldPlay={false}
         useNativeControls
         resizeMode="stretch"
@@ -97,10 +98,10 @@ const PastWorkouts = () => {
       </View>
       <View>
         <View style={styles.row2}>
-          <Text style={styles.subtitle}>All workouts: </Text>
+          <Text style={styles.subtitle2}>All workouts: </Text>
           <DropDownPicker items={dropdownItems}
           style={{backgroundColor: 'white'}}
-          containerStyle={{width: "45%"}}
+          containerStyle={{width: "35%"}}
           dropDownStyle={{backgroundColor: 'white'}}
           itemStyle={{justifyContent: 'center'}}
           activeItemStyle={{backgroundColor: '#bad5f7'}}
@@ -108,10 +109,46 @@ const PastWorkouts = () => {
           defaultValue={sortBy}
           onChangeItem={item => refreshWorkouts(item.value)}
           />
+        </View >
+        <View style={{layoutDirection: 'LTR', width: "75%"}}>
+        {workouts.map((workout) => {return <Button title={getWorkoutTitle(workout, sortBy)} 
+                                            key={workout.workoutID} 
+                                            color="#62a4f5"
+                                            style={styles.button}
+                                            onPress={() => navigation.navigate("Home")}/>})}
         </View>
       </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
+
+  function getURI() {
+
+  }
+
+  function getWorkoutTitle(workout, sortBy) {
+    var workoutTitle = ""; 
+    switch(sortBy) {
+      case "dateRecorded":
+        workoutTitle = "Date: " + workout.dateRecorded;
+        break;
+      case "exerciseName":
+        workoutTitle = "Type: " + workout.exerciseName;
+        break;
+      case "reps":
+        workoutTitle = "Reps Count: " + workout.reps;
+        break;
+      case "weight":
+        workoutTitle = "Weight: " + workout.weight;
+        break;
+      case "difficulty":
+        workoutTitle = "Difficulty: " + workout.difficulty;
+        break;
+      default:
+        Alert.alert("Ooops");
+      }
+      return workoutTitle;
+  }
 };
 
 const styles = StyleSheet.create({
@@ -120,18 +157,25 @@ const styles = StyleSheet.create({
     color: '#31373b',
     fontSize: 20,
     margin: "5%",
-    marginBottom: 0
+    marginBottom: "3%"
   },
   row1: {
     flexDirection: "row",
     justifyContent: 'space-evenly'
   },
-  subtitle: {
+  subtitle1: {
     fontWeight: 'bold',
     color: '#31373b',
     fontSize: 15,
     marginVertical: "3%",
     marginHorizontal: "5%"
+  },
+  subtitle2: {
+    fontWeight: 'bold',
+    color: '#31373b',
+    fontSize: 15,
+    marginVertical: "3%",
+    marginRight: "8%"
   },
   showAnalyticsText: {
     color: '#31373b',
@@ -146,7 +190,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: 'space-evenly',
     marginTop: "5%",
-    marginRight: "2%"
+  },
+  button: {
+    width: 75,
   },
   container: {
     flex: 1,
