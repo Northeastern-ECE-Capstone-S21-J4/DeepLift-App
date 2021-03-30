@@ -58,7 +58,9 @@ class LoginScreen extends Component {
                  onChangeText={text => this.setState({pw: text})}/>
                 <Button onPress={() => this.login()}
                 title="Log In" />
-                <Button onPress={() => navigate("Signup")} />
+                <Button 
+                onPress={() => navigate("Signup")}
+                title="Sign Up" />
              </SafeAreaView>
          )
      }
