@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { View, Button, Text, StyleSheet } from "react-native";
+import { Auth } from 'aws-amplify';
 
 const Home = ({ navigation }) => {
 
   const [exercises, setExercises] = useState([]);
+  const [username, setUsername] = useState([]);
   const fetchExercises = async () => {
     const response = await fetch("https://api.deepliftcapstone.xyz/exercises");
     const exercises = await response.json();
@@ -12,28 +14,49 @@ const Home = ({ navigation }) => {
     setExercises(exercises);
   }
   useEffect(() => {
-    fetchExercises()
+    fetchExercises(),
+    fetchUsername()
   }, [])
-  
+
+  const fetchUsername = async () => {
+    const { attributes } = await Auth.currentAuthenticatedUser();
+    const userEmail = attributes.email;
+    console.log(userEmail);
+    const username = userEmail.split("@");
+    setUsername(username[0]);
+  } 
+
   return (
     <View style={styles.container}>
-      {exercises.map((exercise) => {return <Button title={exercise.exerciseName} 
+      <Text style={styles.title}>Select Workout: </Text>
+      <View>
+      {exercises.map((exercise) => {return <Button title={exercise.exerciseName.toUpperCase()} 
                                             key={exercise.exerciseID} 
-                                            style={styles.exerciseButton}
-                                            onPress={() => navigation.navigate("About")}/>})}
+                                            style={styles.exerciseItem}
+                                            color="#62a4f5"
+                                            onPress={() => navigation.navigate("PreWorkout", 
+                                            {username: username, exerciseName: exercise.exerciseName, 
+                                            exerciseID: exercise.exerciseID})}/>})}
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  title: {
+    fontWeight: 'bold',
+    color: '#31373b',
+    fontSize: 20,
+    margin: "5%"
+  },
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
   },
-  exerciseButton: {
-    color: '#9AC4F8'
+  exerciseItem: {
+    margin: "10%",
   }
 });
 

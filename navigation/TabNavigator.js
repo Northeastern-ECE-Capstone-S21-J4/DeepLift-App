@@ -22,7 +22,7 @@ const BottomTabNavigator = () => {
       },
     })}
     tabBarOptions={{
-      activeTintColor: '#9AC4F8',
+      activeTintColor: '#62a4f5',
       inactiveTintColor: 'gray',
     }}>
       <Tab.Screen name="Past Workouts" component={PastWorkoutsStackNavigator} />

@@ -2,10 +2,11 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import Home from "../screens/Home";
-import About from "../screens/About";
-import LoginScreen from "../screens/Login";
+import PreWorkout from "../screens/PreWorkout";
 import Profile from "../screens/Profile";
 import PastWorkouts from "../screens/PastWorkouts";
+import QRCodePage from "../screens/QRCodePage";
+import LoadingPage from "../screens/LoadingPage";
 
 const Stack = createStackNavigator();
 
@@ -17,7 +18,7 @@ const screenOptionStyle = {
     flex: 1 
   },
   headerStyle: {
-    backgroundColor: "#9AC4F8",
+    backgroundColor: "#62a4f5",
   },
   headerTintColor: "white",
   headerBackTitle: "Back",
@@ -35,8 +36,9 @@ const MainStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
       <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="About" component={About} />
-      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="PreWorkout" component={PreWorkout} />
+      <Stack.Screen name="QRCodePage" component={QRCodePage} />
+      <Stack.Screen name="LoadingPage" component={LoadingPage} />
     </Stack.Navigator>
   );
 };
