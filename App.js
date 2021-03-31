@@ -5,7 +5,7 @@ import { AppRegistry, SafeAreaView, StyleSheet } from "react-native";
 import LoginScreen from "./screens/Login.js"
 import { NavigationContainer, StackActions, useNavigation } from "@react-navigation/native";
 import BottomTabNavigator from "./navigation/TabNavigator";
-import { LoginStackNavigator } from "./navigation/StackNavigator.js";
+import { LoginStackNavigator } from "./navigation/LoginStackNavigator.js";
 import { navigationRef, navigate } from "./navigation/RootNavigation.js";
 import { Session } from './lib/user/session.js';
 
