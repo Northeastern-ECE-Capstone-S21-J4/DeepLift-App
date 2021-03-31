@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Image, Button, Text } from "react-native";
+import { View, StyleSheet, Image, Button, Text, Alert } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { navigate } from "../navigation/RootNavigation";
 
@@ -11,15 +11,43 @@ const Profile = () => {
       <View style={styles.profilePic}>
         <Image style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar6.png'}}/>
         <View style={styles.userInfo}>
-          <Text style={styles.username}>Yajing Wang</Text>
+          <Text style={styles.username}>{session.user.userName}</Text>
           <Ionicons name="location-sharp" style={styles.location}> Boston, MA</Ionicons>
         </View>
       </View>
-      <Button title="Delete Account" color="red" onPress={()=>{}}/>
+      <Button title="Delete Account" color="red" onPress={checkDeleteAccount}/>
       <Button title="Log Out" color="red" onPress={signOut}/>
     </View>
   );
 };
+
+function checkDeleteAccount(){
+  Alert.alert(
+    "Delete Account?",
+    "Are you sure you want to delete this account?",
+    [
+      {
+        text: "Cancel"
+      },
+      {
+        text: "Confirm",
+        onPress: () => deleteAccount()
+      }
+    ],
+
+  )
+}
+
+async function deleteAccount(){
+  try{
+    navigate("Login");
+    console.log("Yeet");
+    session.apiInstance.deleteUser(session.user.userName)
+    session.wipeSessionVars();
+  } catch (error) {
+    console.log("Error deleting account: ", error);
+  }
+}
 
 async function signOut() {
   try {

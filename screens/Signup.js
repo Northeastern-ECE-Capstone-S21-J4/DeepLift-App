@@ -55,7 +55,7 @@ class Signup extends Component {
 
     render() {
         return (
-            <SafeAreaView>
+            <SafeAreaView style={styles.area}>
                 <View>
                     <TextInput 
                         style={{paddingTop:10}}
@@ -112,6 +112,7 @@ class Signup extends Component {
 
 const styles = StyleSheet.create({
     area: {
+        marginTop: 20,
         flex: 1,
         flexDirection: "column"
     },
