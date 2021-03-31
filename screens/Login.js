@@ -20,7 +20,7 @@ class LoginScreen extends Component {
         session.setPW(this.state.pw);
         var loginStatusCode = await session.login();
         if(loginStatusCode == 200){
-            navigate("Home");
+            navigate("Application");
         } else if (loginStatusCode == 403){
             alert("Error",
                   "Invalid username or password",
@@ -53,7 +53,10 @@ class LoginScreen extends Component {
                  secureTextEntry={true}
                  onChangeText={text => this.setState({pw: text})}/>
                 <Button onPress={() => this.login()}
-                title="Submit" />
+                title="Log In" />
+                <Button 
+                onPress={() => navigate("Signup")}
+                title="Sign Up" />
              </SafeAreaView>
          )
      }
