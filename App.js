@@ -1,11 +1,11 @@
 import React from 'react';
 import { APIHelper } from "./lib/api/api.js"
 import { User } from "./lib/user/user.js"
-import { AppRegistry, SafeAreaView } from "react-native";
+import { AppRegistry, SafeAreaView, StyleSheet } from "react-native";
 import LoginScreen from "./screens/Login.js"
 import { NavigationContainer, StackActions, useNavigation } from "@react-navigation/native";
 import BottomTabNavigator from "./navigation/TabNavigator";
-import { MainStackNavigator } from "./navigation/StackNavigator.js";
+import { LoginStackNavigator } from "./navigation/StackNavigator.js";
 import { navigationRef, navigate } from "./navigation/RootNavigation.js";
 import { Session } from './lib/user/session.js';
 
@@ -29,12 +29,21 @@ class StarterApp extends React.Component {
     // }
 
     return (
-      <NavigationContainer ref={navigationRef}>
-        <MainStackNavigator />
-      </NavigationContainer>
+      <SafeAreaView style={styles.area}>
+        <NavigationContainer ref={navigationRef}>
+          <LoginStackNavigator />
+        </NavigationContainer>
+      </SafeAreaView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  area: {
+    flexDirection: "column",
+    flex: 1
+  }
+})
 
 AppRegistry.registerComponent("StarterApp", () => StarterApp);
 
