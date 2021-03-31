@@ -1,7 +1,9 @@
 import React from "react";
 import { View, StyleSheet, Image, Button, Text } from "react-native";
-import { Auth } from 'aws-amplify';
 import { Ionicons } from '@expo/vector-icons';
+import { navigate } from "../navigation/RootNavigation";
+
+global.session;
 
 const Profile = () => {
   return (
@@ -21,7 +23,8 @@ const Profile = () => {
 
 async function signOut() {
   try {
-      await Auth.signOut();
+      session.wipeSessionVars();
+      navigate("Login");
   } catch (error) {
       console.log('error signing out: ', error);
   }
