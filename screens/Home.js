@@ -1,31 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { View, Button, Text, StyleSheet } from "react-native";
-import { Auth } from 'aws-amplify';
+
+global.session;
 
 const Home = ({ navigation }) => {
 
   const [exercises, setExercises] = useState([]);
   const [username, setUsername] = useState([]);
   const fetchExercises = async () => {
-    const response = await fetch("https://api.deepliftcapstone.xyz/exercises");
-    const exercises = await response.json();
-    exercises.sort((a, b) => a.exerciseID - b.exerciseID);
+    const exercises = await session.apiInstance.getExercises();
     console.log(exercises);
+    setUsername(session.user.userName);
     setExercises(exercises);
   }
   useEffect(() => {
-    fetchExercises(),
-    fetchUsername()
+    fetchExercises()
   }, [])
-
-  const fetchUsername = async () => {
-    const { attributes } = await Auth.currentAuthenticatedUser();
-    const userEmail = attributes.email;
-    console.log(userEmail);
-    const username = userEmail.split("@");
-    setUsername(username[0]);
-  } 
-
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Select Workout: </Text>

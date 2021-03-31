@@ -3,6 +3,8 @@ import { ScrollView, StyleSheet, Text, Dimensions, Switch, View } from "react-na
 import { Video, AVPlaybackStatus } from 'expo-av';
 import DropDownPicker from 'react-native-dropdown-picker';
 
+global.session;
+
 const PastWorkouts = () => {
   const { width } = Dimensions.get('window');
   const video = React.useRef(null);
@@ -18,11 +20,10 @@ const PastWorkouts = () => {
                         ];
 
 
-  const username = "yajingwang1022";
+  const username = session.user.userName;
   const [workouts, setWorkouts] = React.useState([]);
   const fetchWorkouts = async () => {
-    const response = await fetch(`https://api.deepliftcapstone.xyz/workouts/user/${username}`);
-    const workouts = await response.json();
+    const workouts = await session.apiInstance.getUserWorkouts(username);
     setWorkouts(workouts);
   };
 
@@ -30,6 +31,7 @@ const PastWorkouts = () => {
     fetchWorkouts()
   }, [])
 
+  
   const refreshWorkouts = (sb) => {
     setSortBy(sb);
     sortWorkouts(sb);
