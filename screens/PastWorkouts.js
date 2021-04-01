@@ -10,13 +10,14 @@ const PastWorkouts = ({ navigation }) => {
   const [isEnabled, setIsEnabled] = React.useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const [sortBy, setSortBy] = React.useState("dateRecorded");
-  const dropdownItems = [{label: 'Most Recent', value: "dateRecorded"}, 
+  const dropdownItems = [{label: 'Date', value: "dateRecorded"}, 
                           {label: 'Exercise Type', value: "exerciseName"},
                           {label: 'Reps Count', value: "reps"},
                           {label: 'Lifted Weight', value: "weight"},
                           {label: 'Difficulty', value: "difficulty"},
                         ];
-
+  const [latestWithPath, setLatestWithPath] = React.useState("");
+  const [latestWithoutPath, setLatestWithoutPath] = React.useState("");
 
   const username = "yajingwang1022";
   const [workouts, setWorkouts] = React.useState([]);
@@ -24,6 +25,8 @@ const PastWorkouts = ({ navigation }) => {
     const response = await fetch(`https://api.deepliftcapstone.xyz/workouts/user/${username}`);
     const workouts = await response.json();
     setWorkouts(workouts);
+    setLatestWithPath(workouts[workouts.length - 1].video_with_path);
+    setLatestWithoutPath(workouts[workouts.length - 1].video_without_path);
   };
 
   React.useEffect(() => {
@@ -38,7 +41,7 @@ const PastWorkouts = ({ navigation }) => {
   const sortWorkouts = (sb) => {
     switch(sb) {
       case "dateRecorded":
-        workouts.sort((a, b) => b.dateRecorded.split('-').join('') - a.dateRecorded.split('-').join(''));
+        workouts.sort((a, b) => a.dateRecorded.split('-').join('') - b.dateRecorded.split('-').join(''));
         break;
       case "exerciseName":
         workouts.sort((a, b) => a.exerciseName.toLowerCase() - b.exerciseName.toLowerCase());
@@ -55,7 +58,6 @@ const PastWorkouts = ({ navigation }) => {
       default:
         Alert.alert("Ooops");
       }
-      console.log(workouts);
   };
 
   return (
@@ -77,7 +79,7 @@ const PastWorkouts = ({ navigation }) => {
         {isEnabled?
         <Video
         ref={video}
-        source={{ uri: 'https://videos-bucket-0001.s3.amazonaws.com/27/video_with.mp4' }}
+        source={{ uri: `https://videos-bucket-0001.s3.amazonaws.com/${latestWithPath}` }}
         shouldPlay={false}
         useNativeControls
         resizeMode="stretch"
@@ -87,7 +89,7 @@ const PastWorkouts = ({ navigation }) => {
         /> :
         <Video
         ref={video}
-        source={{ uri: 'https://videos-bucket-0001.s3.amazonaws.com/27/video_without.mp4' }}
+        source={{ uri: `https://videos-bucket-0001.s3.amazonaws.com/${latestWithoutPath}` }}
         shouldPlay={false}
         useNativeControls
         resizeMode="stretch"
@@ -106,7 +108,6 @@ const PastWorkouts = ({ navigation }) => {
           itemStyle={{justifyContent: 'center'}}
           activeItemStyle={{backgroundColor: '#bad5f7'}}
           placeholder="Sort by"
-          defaultValue={sortBy}
           onChangeItem={item => refreshWorkouts(item.value)}
           />
         </View >
@@ -121,10 +122,6 @@ const PastWorkouts = ({ navigation }) => {
       </ScrollView>
     </View>
   );
-
-  function getURI() {
-
-  }
 
   function getWorkoutTitle(workout, sortBy) {
     var workoutTitle = ""; 
