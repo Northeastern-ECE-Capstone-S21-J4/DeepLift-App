@@ -38,7 +38,7 @@ const PastWorkouts = ({ navigation }) => {
   const sortWorkouts = (sb) => {
     switch(sb) {
       case "dateRecorded":
-        workouts.sort((a, b) => a.dateRecorded.split('-').join('') - b.dateRecorded.split('-').join(''));
+        workouts.sort((a, b) => b.dateRecorded.split('-').join('') - a.dateRecorded.split('-').join(''));
         break;
       case "exerciseName":
         workouts.sort((a, b) => a.exerciseName.toLowerCase() - b.exerciseName.toLowerCase());
@@ -110,7 +110,7 @@ const PastWorkouts = ({ navigation }) => {
           onChangeItem={item => refreshWorkouts(item.value)}
           />
         </View >
-        <View style={{layoutDirection: 'LTR', width: "75%"}}>
+        <View style={{layoutDirection: 'LTR', width: "60%"}}>
         {workouts.map((workout) => {return <Button title={getWorkoutTitle(workout, sortBy)} 
                                             key={workout.workoutID} 
                                             color="#62a4f5"
