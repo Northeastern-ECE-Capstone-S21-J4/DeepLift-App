@@ -41,7 +41,6 @@ function checkDeleteAccount(){
 async function deleteAccount(){
   try{
     navigate("Login");
-    console.log("Yeet");
     session.apiInstance.deleteUser(session.user.userName)
     session.wipeSessionVars();
   } catch (error) {

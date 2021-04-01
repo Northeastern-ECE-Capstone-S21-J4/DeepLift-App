@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { SafeAreaView, TextInput, Text, StyleSheet, Alert, Button } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { SafeAreaView, TextInput, StyleSheet, Button } from 'react-native'
 import { navigate } from "../navigation/RootNavigation.js";
 
 global.session;
@@ -10,8 +9,7 @@ class LoginScreen extends Component {
         super();
         this.state = {
             userName: "",
-            pw: "",
-            response: null
+            pw: ""
         }
     }
 

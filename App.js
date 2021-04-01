@@ -1,10 +1,6 @@
 import React from 'react';
-import { APIHelper } from "./lib/api/api.js"
-import { User } from "./lib/user/user.js"
 import { AppRegistry, SafeAreaView, StyleSheet } from "react-native";
-import LoginScreen from "./screens/Login.js"
 import { NavigationContainer, StackActions, useNavigation } from "@react-navigation/native";
-import BottomTabNavigator from "./navigation/TabNavigator";
 import { LoginStackNavigator } from "./navigation/LoginStackNavigator.js";
 import { navigationRef, navigate } from "./navigation/RootNavigation.js";
 import { Session } from './lib/user/session.js';
@@ -22,12 +18,6 @@ class StarterApp extends React.Component {
   }
 
   render() {
-    // if(this.needsLogin){
-    //   return(
-    //     <LoginScreen />
-    //   )
-    // }
-
     return (
       <SafeAreaView style={styles.area}>
         <NavigationContainer ref={navigationRef}>
