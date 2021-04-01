@@ -7,8 +7,6 @@ import Profile from "../screens/Profile";
 import PastWorkouts from "../screens/PastWorkouts";
 import QRCodePage from "../screens/QRCodePage";
 import LoadingPage from "../screens/LoadingPage";
-import LoginScreen from "../screens/Login";
-import Signup from "../screens/Signup";
 
 const Stack = createStackNavigator();
 

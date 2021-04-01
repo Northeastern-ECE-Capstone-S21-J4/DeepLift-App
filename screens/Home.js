@@ -6,11 +6,10 @@ global.session;
 const Home = ({ navigation }) => {
 
   const [exercises, setExercises] = useState([]);
-  const [username, setUsername] = useState([]);
+  const username = session.user.userName;
+
   const fetchExercises = async () => {
     const exercises = await session.apiInstance.getExercises();
-    console.log(exercises);
-    setUsername(session.user.userName);
     setExercises(exercises);
   }
   useEffect(() => {
