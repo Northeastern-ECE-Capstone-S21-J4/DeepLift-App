@@ -7,6 +7,7 @@ import Profile from "../screens/Profile";
 import PastWorkouts from "../screens/PastWorkouts";
 import QRCodePage from "../screens/QRCodePage";
 import LoadingPage from "../screens/LoadingPage";
+import WorkoutAnalytics from "../screens/WorkoutAnalytics";
 
 const Stack = createStackNavigator();
 
@@ -28,6 +29,7 @@ const PastWorkoutsStackNavigator = () => {
     return (
       <Stack.Navigator screenOptions={screenOptionStyle}>
         <Stack.Screen name="PastWorkouts" component={PastWorkouts} />
+        <Stack.Screen name="WorkoutAnalytics" component={WorkoutAnalytics} />
       </Stack.Navigator>
     );
   };

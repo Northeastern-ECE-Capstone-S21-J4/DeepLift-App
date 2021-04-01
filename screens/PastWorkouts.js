@@ -12,8 +12,8 @@ const PastWorkouts = ({ navigation }) => {
   const [sortBy, setSortBy] = React.useState("dateRecorded");
   const dropdownItems = [{label: 'Date', value: "dateRecorded"}, 
                           {label: 'Exercise Type', value: "exerciseName"},
-                          {label: 'Reps Count', value: "reps"},
                           {label: 'Lifted Weight', value: "weight"},
+                          {label: 'Reps Count', value: "reps"},
                           {label: 'Difficulty', value: "difficulty"},
                         ];
   const [latestWithPath, setLatestWithPath] = React.useState("");
@@ -116,7 +116,7 @@ const PastWorkouts = ({ navigation }) => {
                                             key={workout.workoutID} 
                                             color="#62a4f5"
                                             style={styles.button}
-                                            onPress={() => navigation.navigate("Home")}/>})}
+                                            onPress={() => navigation.navigate("WorkoutAnalytics", {workout})}/>})}
         </View>
       </View>
       </ScrollView>
