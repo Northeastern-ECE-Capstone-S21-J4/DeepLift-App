@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet, Image, Button, Text } from "react-native";
 import { Auth } from 'aws-amplify';
 import { Ionicons } from '@expo/vector-icons';
+import CalendarHeatmap from 'react-native-calendar-heatmap';
 
 const Profile = () => {
   return (
@@ -13,6 +14,63 @@ const Profile = () => {
           <Ionicons name="location-sharp" style={styles.location}> Boston, MA</Ionicons>
         </View>
       </View>
+      <View style={styles.calendar}>
+      <CalendarHeatmap
+            endDate={new Date("2021-04-30")}
+            numDays={124}
+            colorArray={["#eee", "#bcd6f7", "#656ac6", "#393b99", "#191c5c"]}
+            values={[
+              { date: '2021-01-01' },
+              { date: '2021-01-22' },
+              { date: '2021-01-22' },
+              { date: '2021-01-22' },
+              { date: '2021-01-22' },
+              { date: '2021-01-22' },
+              { date: '2021-01-22' },
+              { date: '2021-01-22' },
+              { date: '2021-01-22' },
+              { date: '2021-01-22' },
+              { date: '2021-01-22' },
+              { date: '2021-01-22' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+              { date: '2021-03-30' },
+            ]}
+          />
+        </View>
       <Button title="Delete Account" color="red" onPress={()=>{}}/>
       <Button title="Log Out" color="red" onPress={signOut}/>
     </View>
@@ -61,6 +119,11 @@ const styles = StyleSheet.create({
     color: "gray",
     margin: "2%",
     textAlign: "center"
+  },
+  calendar: {
+    marginHorizontal: "10%",
+    marginTop: "5%",
+    marginBottom: "20%",
   },
 });
 
