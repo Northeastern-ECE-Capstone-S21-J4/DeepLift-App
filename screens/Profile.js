@@ -5,71 +5,39 @@ import { Ionicons } from '@expo/vector-icons';
 import CalendarHeatmap from 'react-native-calendar-heatmap';
 
 const Profile = () => {
+
+  const username = "yajingwang1022";
+  const [workoutDates, setWorkoutDates] = React.useState([]);
+  const fetchWorkouts = async () => {
+    const response = await fetch(`https://api.deepliftcapstone.xyz/workouts/user/${username}`);
+    const workouts = await response.json();
+    const wds = [];
+    workouts.map((workout) => { wds.push({['date'] : workout.dateRecorded})});
+    setWorkoutDates(wds);
+    console.log(workoutDates);
+  };
+
+  React.useEffect(() => {
+    fetchWorkouts()
+  }, [])
+
   return (
     <View style={styles.container}>
-      <View style={styles.profilePic}>
-        <Image style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar6.png'}}/>
+      <View style={styles.profile}>
+        <Image style={styles.avatar} source={require('../assets/unnamed.png')}/>
         <View style={styles.userInfo}>
           <Text style={styles.username}>Yajing Wang</Text>
           <Ionicons name="location-sharp" style={styles.location}> Boston, MA</Ionicons>
         </View>
       </View>
       <View style={styles.calendar}>
-      <CalendarHeatmap
+      <Text style={styles.workoutSummary}>Workout Summary</Text>
+      {workoutDates.length !== 0? <CalendarHeatmap
             endDate={new Date("2021-04-30")}
             numDays={124}
             colorArray={["#eee", "#bcd6f7", "#656ac6", "#393b99", "#191c5c"]}
-            values={[
-              { date: '2021-01-01' },
-              { date: '2021-01-22' },
-              { date: '2021-01-22' },
-              { date: '2021-01-22' },
-              { date: '2021-01-22' },
-              { date: '2021-01-22' },
-              { date: '2021-01-22' },
-              { date: '2021-01-22' },
-              { date: '2021-01-22' },
-              { date: '2021-01-22' },
-              { date: '2021-01-22' },
-              { date: '2021-01-22' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-              { date: '2021-03-30' },
-            ]}
-          />
+            values={workoutDates}
+          />: <View/>}
         </View>
       <Button title="Delete Account" color="red" onPress={()=>{}}/>
       <Button title="Log Out" color="red" onPress={signOut}/>
@@ -92,7 +60,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'stretch',
   },
-  profilePic: {
+  profile: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'stretch',
@@ -106,7 +74,7 @@ const styles = StyleSheet.create({
     marginVertical: "10%",
   },
   userInfo: {
-    marginVertical: "13%",
+    marginVertical: "15%",
   },
   username: {
     fontWeight: "bold",
@@ -122,8 +90,13 @@ const styles = StyleSheet.create({
   },
   calendar: {
     marginHorizontal: "10%",
-    marginTop: "5%",
-    marginBottom: "20%",
+    marginBottom: "15%",
+  },
+  workoutSummary: {
+    fontWeight: "bold",
+    fontSize: 20,
+    marginBottom: "10%",
+    textAlign: "center"
   },
 });
 

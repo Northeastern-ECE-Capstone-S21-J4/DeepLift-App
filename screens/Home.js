@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Button, Text, StyleSheet } from "react-native";
+import { View, Button, Text, StyleSheet, ScrollView } from "react-native";
 import { Auth } from 'aws-amplify';
 
 const Home = ({ navigation }) => {
@@ -29,7 +29,7 @@ const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Select Workout: </Text>
-      <View>
+      <ScrollView>
       {exercises.map((exercise) => {return <Button title={exercise.exerciseName.toUpperCase()} 
                                             key={exercise.exerciseID} 
                                             style={styles.exerciseItem}
@@ -37,7 +37,7 @@ const Home = ({ navigation }) => {
                                             onPress={() => navigation.navigate("PreWorkout", 
                                             {username: username, exerciseName: exercise.exerciseName, 
                                             exerciseID: exercise.exerciseID})}/>})}
-      </View>
+      </ScrollView>
     </View>
   );
 };
