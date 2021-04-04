@@ -1,32 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { View, Button, Text, StyleSheet, ScrollView, Dimensions, Image } from "react-native";
-import { Auth } from 'aws-amplify';
+
+global.session;
 
 const Home = ({ navigation }) => {
 
   const { width } = Dimensions.get('window');
   const [exercises, setExercises] = useState([]);
-  const [username, setUsername] = useState([]);
+  const username = session.user.userName;
+
   const fetchExercises = async () => {
-    const response = await fetch("https://api.deepliftcapstone.xyz/exercises");
-    const exercises = await response.json();
-    exercises.sort((a, b) => a.exerciseID - b.exerciseID);
-    console.log(exercises);
+    const exercises = await session.apiInstance.getExercises();
     setExercises(exercises);
   }
   useEffect(() => {
-    fetchExercises(),
-    fetchUsername()
+    fetchExercises()
   }, [])
-
-  const fetchUsername = async () => {
-    const { attributes } = await Auth.currentAuthenticatedUser();
-    const userEmail = attributes.email;
-    console.log(userEmail);
-    const username = userEmail.split("@");
-    setUsername(username[0]);
-  } 
-
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Select Workout: </Text>

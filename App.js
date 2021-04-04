@@ -1,47 +1,40 @@
 import React from 'react';
-import { APIHelper } from "./lib/api/api.js"
-import { AppRegistry } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import BottomTabNavigator from "./navigation/TabNavigator";
-import { Amplify, Auth } from 'aws-amplify';
-import config from './aws-exports';
-import { withAuthenticator, AmplifyTheme } from 'aws-amplify-react-native';
+import { AppRegistry, SafeAreaView, StyleSheet } from "react-native";
+import { NavigationContainer, StackActions, useNavigation } from "@react-navigation/native";
+import { LoginStackNavigator } from "./navigation/LoginStackNavigator.js";
+import { navigationRef, navigate } from "./navigation/RootNavigation.js";
+import { Session } from './lib/user/session.js';
 
-Amplify.configure(config)
-
-const MyButton = Object.assign({}, AmplifyTheme.button, { backgroundColor: '#62a4f5', textAlign: 'center', verticalAlign: 'middle', borderRadius: '5px',});
-const MyTheme = Object.assign({}, AmplifyTheme, { button: MyButton });
-
-// TO DO: need to do more research on Provider
-// const store = createStore(AppReducer, applyMiddleware(middleware));
-var apiHelper = new APIHelper("https://api.deepliftcapstone.xyz");//"http://127.0.0.1:8000");
+global.session = new Session();
 
 class StarterApp extends React.Component {
-  // async componentDidMount(){
-  //   await apiHelper.getToken("username", "password");
-  //   apiHelper.getUsers();
-  //   apiHelper.getUserById(1);
-  //   apiHelper.getWorkoutById(1);
-  //   apiHelper.getUserWorkouts(1);
-  //   apiHelper.getUserExerciseById(1, 1);
-  //   apiHelper.getExercises();
-  // }
+  async componentDidMount(){
+    await session.wipeSessionVars();
+    await session.loadAllSessionVars();
+    this.needsLogin = await session.checkLogin();
+    if(this.needsLogin){
+      navigate("Login");
+    }
+  }
 
   render() {
     return (
-        <NavigationContainer>
-          <BottomTabNavigator />
+      <SafeAreaView style={styles.area}>
+        <NavigationContainer ref={navigationRef}>
+          <LoginStackNavigator />
         </NavigationContainer>
+      </SafeAreaView>
     );
   }
 }
 
-async function getCurrentUser() {
-  const { attributes } = await Auth.currentAuthenticatedUser();
-  const userEmail = attributes.email;
-  return userEmail;
-}
+const styles = StyleSheet.create({
+  area: {
+    flexDirection: "column",
+    flex: 1
+  }
+})
 
 AppRegistry.registerComponent("StarterApp", () => StarterApp);
 
-export default withAuthenticator(StarterApp, false, [], null, MyTheme);
+export default StarterApp;
