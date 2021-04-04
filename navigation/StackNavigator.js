@@ -23,6 +23,7 @@ const screenOptionStyle = {
   },
   headerTintColor: "white",
   headerBackTitle: "Back",
+  headerLeft: null
 };
 
 const PastWorkoutsStackNavigator = () => {
