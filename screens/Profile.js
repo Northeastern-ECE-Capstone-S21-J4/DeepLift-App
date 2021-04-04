@@ -41,7 +41,7 @@ const Profile = () => {
             values={workoutDates}
           />: <View/>}
         </View>
-      <Button title="Delete Account" color="red" onPress={checkDeleteAccount}/>
+      <Button title="Delete Account" color="red" disabled={true} onPress={checkDeleteAccount}/>
       <Button title="Log Out" color="red" onPress={signOut}/>
     </View>
   );
