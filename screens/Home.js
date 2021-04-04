@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { View, Button, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Button, Text, StyleSheet, ScrollView, Dimensions, Image } from "react-native";
 import { Auth } from 'aws-amplify';
 
 const Home = ({ navigation }) => {
 
+  const { width } = Dimensions.get('window');
   const [exercises, setExercises] = useState([]);
   const [username, setUsername] = useState([]);
   const fetchExercises = async () => {
@@ -30,13 +31,45 @@ const Home = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.title}>Select Workout: </Text>
       <ScrollView>
-      {exercises.map((exercise) => {return <Button title={exercise.exerciseName.toUpperCase()} 
-                                            key={exercise.exerciseID} 
-                                            style={styles.exerciseItem}
-                                            color="#62a4f5"
-                                            onPress={() => navigation.navigate("PreWorkout", 
-                                            {username: username, exerciseName: exercise.exerciseName, 
-                                            exerciseID: exercise.exerciseID})}/>})}
+      {exercises.map((exercise, index) => {
+        if (index == 0) {
+          return <View>
+          <Image style={{width: 0.8*width, height: 200, marginHorizontal: "10%"}} 
+          source={require('../assets/1.jpg')}/>
+          <Button title={exercise.exerciseName.toUpperCase()} 
+          key={exercise.exerciseID} 
+          style={styles.exerciseItem}
+          color="#62a4f5"
+          onPress={() => navigation.navigate("PreWorkout", 
+          {username: username, exerciseName: exercise.exerciseName, 
+          exerciseID: exercise.exerciseID})}/>
+          </View>}
+          else if (index == 1) {
+            return <View>
+          <Image style={{width: 0.8*width, height: 200, marginHorizontal: "10%"}} 
+          source={require('../assets/2.jpg')}/>
+          <Button title={exercise.exerciseName.toUpperCase()} 
+          key={exercise.exerciseID} 
+          style={styles.exerciseItem}
+          color="#62a4f5"
+          onPress={() => navigation.navigate("PreWorkout", 
+          {username: username, exerciseName: exercise.exerciseName, 
+          exerciseID: exercise.exerciseID})}/>
+          </View>
+          } else {
+            return <View>
+          <Image style={{width: 0.8*width, height: 200, marginHorizontal: "10%"}} 
+          source={require('../assets/3.jpg')}/>
+          <Button title={exercise.exerciseName.toUpperCase()} 
+          key={exercise.exerciseID} 
+          style={styles.exerciseItem}
+          color="#62a4f5"
+          onPress={() => navigation.navigate("PreWorkout", 
+          {username: username, exerciseName: exercise.exerciseName, 
+          exerciseID: exercise.exerciseID})}/>
+          </View>
+          }
+        })}
       </ScrollView>
     </View>
   );
