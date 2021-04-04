@@ -9,6 +9,7 @@ const PreWorkout = ({ route, navigation }) => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <ScrollView>
+        <Text style={styles.title} >{exerciseName.toUpperCase()}</Text>
         <Text style={styles.text1} >Please enter weight (lb): </Text>
         <TextInput style={styles.textField}
                   keyboardType="number-pad"
@@ -46,10 +47,16 @@ const PreWorkout = ({ route, navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  title: {
+    fontWeight: 'bold',
+    color: '#31373b',
+    fontSize: 20,
+    textAlign: "center",
+    marginTop: "10%"
+  },
   text1: {
     fontSize: 16,
     margin: "10%",
-    marginTop: "20%",
   },
   text2: {
     fontSize: 16,
