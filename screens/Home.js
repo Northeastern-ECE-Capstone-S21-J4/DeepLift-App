@@ -33,7 +33,7 @@ const Home = ({ navigation }) => {
       <ScrollView>
       {exercises.map((exercise, index) => {
         if (index == 0) {
-          return <View>
+          return <View key={1}>
           <Image style={{width: 0.8*width, height: 200, marginHorizontal: "10%", borderRadius: 25}} 
           source={require('../assets/1.jpg')}/>
           <Button title={exercise.exerciseName.toUpperCase()} 
@@ -45,7 +45,7 @@ const Home = ({ navigation }) => {
           exerciseID: exercise.exerciseID})}/>
           </View>}
           else if (index == 1) {
-            return <View>
+            return <View key={2}>
           <Image style={{width: 0.8*width, height: 200, marginHorizontal: "10%", borderRadius: 25}} 
           source={require('../assets/2.jpg')}/>
           <Button title={exercise.exerciseName.toUpperCase()} 
@@ -57,7 +57,7 @@ const Home = ({ navigation }) => {
           exerciseID: exercise.exerciseID})}/>
           </View>
           } else {
-            return <View>
+            return <View key={3}>
           <Image style={{width: 0.8*width, height: 200, marginHorizontal: "10%", borderRadius: 25}} 
           source={require('../assets/3.jpg')}/>
           <Button title={exercise.exerciseName.toUpperCase()} 
