@@ -34,7 +34,7 @@ const Home = ({ navigation }) => {
       {exercises.map((exercise, index) => {
         if (index == 0) {
           return <View>
-          <Image style={{width: 0.8*width, height: 200, marginHorizontal: "10%"}} 
+          <Image style={{width: 0.8*width, height: 200, marginHorizontal: "10%", borderRadius: 25}} 
           source={require('../assets/1.jpg')}/>
           <Button title={exercise.exerciseName.toUpperCase()} 
           key={exercise.exerciseID} 
@@ -46,7 +46,7 @@ const Home = ({ navigation }) => {
           </View>}
           else if (index == 1) {
             return <View>
-          <Image style={{width: 0.8*width, height: 200, marginHorizontal: "10%"}} 
+          <Image style={{width: 0.8*width, height: 200, marginHorizontal: "10%", borderRadius: 25}} 
           source={require('../assets/2.jpg')}/>
           <Button title={exercise.exerciseName.toUpperCase()} 
           key={exercise.exerciseID} 
@@ -58,7 +58,7 @@ const Home = ({ navigation }) => {
           </View>
           } else {
             return <View>
-          <Image style={{width: 0.8*width, height: 200, marginHorizontal: "10%"}} 
+          <Image style={{width: 0.8*width, height: 200, marginHorizontal: "10%", borderRadius: 25}} 
           source={require('../assets/3.jpg')}/>
           <Button title={exercise.exerciseName.toUpperCase()} 
           key={exercise.exerciseID} 

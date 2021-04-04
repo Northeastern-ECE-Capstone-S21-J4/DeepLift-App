@@ -127,19 +127,19 @@ const PastWorkouts = ({ navigation }) => {
     var workoutTitle = ""; 
     switch(sortBy) {
       case "dateRecorded":
-        workoutTitle = "Date: " + workout.dateRecorded;
+        workoutTitle = workout.dateRecorded + " - " + workout.exerciseName;
         break;
       case "exerciseName":
         workoutTitle = "Type: " + workout.exerciseName;
         break;
       case "reps":
-        workoutTitle = "Reps Count: " + workout.reps;
+        workoutTitle = "Reps Count: " + workout.reps + " - " + workout.exerciseName;
         break;
       case "weight":
-        workoutTitle = "Weight: " + workout.weight;
+        workoutTitle = "Weight: " + workout.weight + " - " + workout.exerciseName;
         break;
       case "difficulty":
-        workoutTitle = "Difficulty: " + workout.difficulty;
+        workoutTitle = "Difficulty: " + workout.difficulty + " - " + workout.exerciseName;
         break;
       default:
         Alert.alert("Ooops");
