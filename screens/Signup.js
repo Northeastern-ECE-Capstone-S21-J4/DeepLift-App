@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { TextInput, StyleSheet, View, Button, SafeAreaView } from 'react-native';
+import { TextInput, StyleSheet, View, Text, SafeAreaView } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { navigate } from '../navigation/RootNavigation';
 
 global.session;
@@ -57,17 +58,18 @@ class Signup extends Component {
         return (
             <SafeAreaView style={styles.area}>
                 <View>
-                    <TextInput 
-                        style={{paddingTop:10}}
-                        placeholder="First Name"
-                        style={styles.textBox}
-                        onChangeText={text => this.setState({firstName: text})}
-                    />
-                    <TextInput
-                        placeholder="Last Name"
-                        style={styles.textBox}
-                        onChangeText={text => this.setState({lastName: text})}
-                    />
+                    <View style={styles.group}>
+                        <TextInput 
+                            style={styles.firstNameBox}
+                            placeholder="First Name"
+                            onChangeText={text => this.setState({firstName: text})}
+                        />
+                        <TextInput
+                            placeholder="Last Name"
+                            style={styles.lastNameBox}
+                            onChangeText={text => this.setState({lastName: text})}
+                        />
+                    </View>
                     <TextInput 
                         placeholder="Email Address"
                         style={styles.textBox}
@@ -92,18 +94,23 @@ class Signup extends Component {
                         placeholder="Confirm Password"
                         onChangeText={text => this.setState({pw_confirm: text})}
                     />
-                    <TextInput 
-                        keyboardType="numeric"
-                        placeholder="Bodyweight"
-                        style={styles.textBox}
-                        onChangeText={text => this.setState({bodyweight: text})}/>
-                    <TextInput 
-                        keyboardType="numeric"
-                        style={styles.textBox}
-                        placeholder="Age"
-                        onChangeText={text => this.setState({age: text})}/>
-                    <Button onPress={() => this.register()}
-                    title="Submit" />
+                    <View style={styles.group}>
+                        <TextInput 
+                            keyboardType="numeric"
+                            placeholder="Bodyweight"
+                            style={styles.weightBox}
+                            onChangeText={text => this.setState({bodyweight: text})}/>
+                        <TextInput 
+                            keyboardType="numeric"
+                            style={styles.ageBox}
+                            placeholder="Age"
+                            onChangeText={text => this.setState({age: text})}/>
+                    </View>
+                    <TouchableOpacity
+                    style={styles.submitButton} 
+                    onPress={() => this.register()}> 
+                        <Text style={styles.buttonText}>Sign Up</Text>
+                    </TouchableOpacity>
                 </View>
             </SafeAreaView>
         )
@@ -112,18 +119,69 @@ class Signup extends Component {
 
 const styles = StyleSheet.create({
     area: {
-        marginTop: 20,
         flex: 1,
         flexDirection: "column"
     },
-    infoEnterBox: {
-        flex: 1,
-        flexDirection: "row",
-        justifyContent: 'center',
-        alignContent: 'center',
-    },
     textBox: {
-        textAlign: 'center',
+        borderWidth: 1,
+        borderColor: "#AEAEB2",
+        borderRadius: 5,
+        margin: "2.5%",
+        textAlign: "center",
+        height: 30
+    },
+    firstNameBox: {
+        borderWidth: 1,
+        borderColor: "#AEAEB2",
+        borderRadius: 5,
+        margin: "2.5%",
+        textAlign: "center",
+        height: 30,
+        width: "35%"
+    },
+    lastNameBox: {
+        borderWidth: 1,
+        borderColor: "#AEAEB2",
+        borderRadius: 5,
+        margin: "2.5%",
+        textAlign: "center",
+        height: 30,
+        width: "55%"
+    },
+    weightBox: {
+        borderWidth: 1,
+        borderColor: "#AEAEB2",
+        borderRadius: 5,
+        margin: "2.5%",
+        textAlign: "center",
+        height: 30,
+        width: "45%"
+    },
+    ageBox: {
+        borderWidth: 1,
+        borderColor: "#AEAEB2",
+        borderRadius: 5,
+        margin: "2.5%",
+        textAlign: "center",
+        height: 30,
+        width: "45%"
+    },
+    group: {
+        flexDirection: "row",
+        justifyContent: "space-around",
+        alignContent: "center",
+    },
+    submitButton: {
+        height: 40,
+        marginLeft: "2.5%",
+        marginRight: "2.5%",
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: "#62a4f5",
+        borderRadius: 10
+    },
+    buttonText: {
+        color: "#ffffff"
     }
 
 })

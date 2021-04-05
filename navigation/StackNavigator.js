@@ -13,8 +13,9 @@ const Stack = createStackNavigator();
 
 const screenOptionStyle = {
   title: 'Deep Lift',
+  headerTitleAlign: "center",
   headerTitleStyle: { 
-    textAlign: 'center', 
+    alignSelf: 'center', 
     marginTop: '5%',
     flex: 1 
   },
