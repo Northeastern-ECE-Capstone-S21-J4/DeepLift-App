@@ -25,7 +25,7 @@ const WorkoutAnalytics = ({ route, navigation }) => {
         resizeMode="stretch"
         isLooping={false}
         onPlaybackStatusUpdate={status => setStatus(() => status)}
-        style={{ width: 0.8*width, height: 200, marginHorizontal: "10%", marginTop: "2%" }}
+        style={{ width: 0.8*width, height: 200, marginHorizontal: "10%", marginTop: "2%", borderRadius: 10 }}
         /> :
         <Video
         ref={video}
@@ -35,7 +35,7 @@ const WorkoutAnalytics = ({ route, navigation }) => {
         resizeMode="stretch"
         isLooping={false}
         onPlaybackStatusUpdate={status => setStatus(() => status)}
-        style={{ width: 0.8*width, height: 200, marginHorizontal: "10%", marginTop: "2%" }}
+        style={{ width: 0.8*width, height: 200, marginHorizontal: "10%", marginTop: "2%", borderRadius: 10 }}
         /> }
         <View style={styles.row1}>
           <Text style={styles.showAnalyticsText}>Show Analytics </Text>
