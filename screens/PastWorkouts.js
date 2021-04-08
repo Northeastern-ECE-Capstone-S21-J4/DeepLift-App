@@ -87,7 +87,7 @@ const PastWorkouts = ({ navigation }) => {
         resizeMode="stretch"
         isLooping={false}
         onPlaybackStatusUpdate={status => setStatus(() => status)}
-        style={{ width: 0.8*width, height: 200, marginHorizontal: "10%" }}
+        style={{ width: 0.8*width, height: 200, marginHorizontal: "10%", borderRadius: 10 }}
         /> :
         <Video
         ref={video}
@@ -97,7 +97,7 @@ const PastWorkouts = ({ navigation }) => {
         resizeMode="stretch"
         isLooping={false}
         onPlaybackStatusUpdate={status => setStatus(() => status)}
-        style={{ width: 0.8*width, height: 200, marginHorizontal: "10%" }}
+        style={{ width: 0.8*width, height: 200, marginHorizontal: "10%", borderRadius: 10 }}
         /> }
       </View>
       <View>
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     color: '#31373b',
     fontSize: 15,
     marginVertical: "3%",
-    marginHorizontal: "5%"
+    marginLeft: "5%"
   },
   subtitle2: {
     fontWeight: 'bold',
@@ -182,8 +182,9 @@ const styles = StyleSheet.create({
     marginVertical: "3%",
   },
   showAnalyticsSwitch: {
-    margin: "2%",
-    marginLeft: 0
+    marginVertical: "2%",
+    marginLeft: 0,
+    marginRight: "5%"
   },
   row2: {
     flexDirection: "row",
@@ -191,7 +192,7 @@ const styles = StyleSheet.create({
     marginTop: "5%",
   },
   button: {
-    width: 75,
+    width: 75
   },
   container: {
     flex: 1,

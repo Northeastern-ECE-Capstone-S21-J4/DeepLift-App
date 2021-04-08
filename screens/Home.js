@@ -11,6 +11,7 @@ const Home = ({ navigation }) => {
 
   const fetchExercises = async () => {
     const exercises = await session.apiInstance.getExercises();
+    exercises.sort((a, b) => a.exerciseID - b.exerciseID);
     setExercises(exercises);
   }
   useEffect(() => {

@@ -1,15 +1,22 @@
 import React, { useState }  from "react";
-import { View, ScrollView, StyleSheet, Text, TextInput, Keyboard, TouchableWithoutFeedback } from "react-native";
+import { View, ScrollView, StyleSheet, Text, TextInput, Keyboard, 
+          TouchableWithoutFeedback, Image, Dimensions } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
 
 const PreWorkout = ({ route, navigation }) => {
   const [weight, onChangeWeight] = useState('');
   const { username, exerciseName, exerciseID } = route.params;
+  const { width } = Dimensions.get('window');
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <ScrollView>
         <Text style={styles.title} >{exerciseName.toUpperCase()}</Text>
+        {exerciseID == 1? 
+        <Image style={{width: 0.8*width, height: 200, marginHorizontal: "10%", borderRadius: 25, marginTop: "5%"}} 
+        source={require('../assets/1.jpg')}/> : (exerciseID == 2? <Image style={{width: 0.8*width, height: 200, marginHorizontal: "10%", borderRadius: 25, marginTop: "5%"}} 
+        source={require('../assets/2.jpg')}/> : <Image style={{width: 0.8*width, height: 200, marginHorizontal: "10%", borderRadius: 25, marginTop: "5%"}} 
+        source={require('../assets/3.jpg')}/>)}
         <Text style={styles.text1} >Please enter weight (lb): </Text>
         <TextInput style={styles.textField}
                   keyboardType="number-pad"
@@ -52,15 +59,17 @@ const styles = StyleSheet.create({
     color: '#31373b',
     fontSize: 20,
     textAlign: "center",
-    marginTop: "10%"
+    marginTop: "7%"
   },
   text1: {
     fontSize: 16,
     margin: "10%",
+    marginBottom: "8%"
   },
   text2: {
     fontSize: 16,
-    marginVertical: "20%",
+    marginTop: "10%",
+    marginBottom: "8%",
     marginHorizontal: "10%",
   },
   textField: {
