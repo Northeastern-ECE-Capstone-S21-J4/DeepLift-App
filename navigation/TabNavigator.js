@@ -13,7 +13,7 @@ const BottomTabNavigator = () => {
         console.log();
         if (route.name === 'Home') {
           iconName = focused ? 'home' : 'home-outline';
-        } else if (route.name === 'Me') {
+        } else if (route.name === 'Profile') {
           iconName = focused ? 'person-circle' : 'person-circle-outline';
         } else if (route.name === 'Past Workouts') {
           iconName = focused ? 'barbell' : 'barbell-outline';
@@ -27,7 +27,7 @@ const BottomTabNavigator = () => {
     }}>
       <Tab.Screen name="Past Workouts" component={PastWorkoutsStackNavigator} />
       <Tab.Screen name="Home" component={MainStackNavigator} />
-      <Tab.Screen name="Me" component={ProfileStackNavigator} />
+      <Tab.Screen name="Profile" component={ProfileStackNavigator} />
     </Tab.Navigator>
   );
 }
