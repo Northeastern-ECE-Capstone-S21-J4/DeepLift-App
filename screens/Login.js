@@ -94,13 +94,15 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         margin: "2.5%",
         textAlign: "center",
-        color: "#f2f2f2"
+        color: "#f2f2f2",
+        height: 40
     },
     buttonsBox: {
         flexDirection: "row",
         alignContent: "center",
         justifyContent: "center",
-        height: 40
+        height: 40,
+        marginTop: "3%"
     },
     loginButton: {
         width: "45%",

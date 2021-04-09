@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     },
     uiBox: {
         flex: 1,
-        paddingTop: "40%",
+        paddingTop: "25%",
         paddingBottom: "50%",
         flexDirection: "column",
         alignContent: "center",
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
         margin: "2.5%",
         textAlign: "center",
         color: "#f2f2f2",
-        height: 30
+        height: 40
     },
     firstNameBox: {
         borderWidth: 2,
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
         margin: "2.5%",
         textAlign: "center",
         color: "#f2f2f2",
-        height: 30,
+        height: 40,
         width: "35%"
     },
     lastNameBox: {
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
         margin: "2.5%",
         textAlign: "center",
         color: "#f2f2f2",
-        height: 30,
+        height: 40,
         width: "55%"
     },
     weightBox: {
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
         margin: "2.5%",
         textAlign: "center",
         color: "#f2f2f2",
-        height: 30,
+        height: 40,
         width: "45%"
     },
     ageBox: {
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
         margin: "2.5%",
         textAlign: "center",
         color: "#f2f2f2",
-        height: 30,
+        height: 40,
         width: "45%"
     },
     group: {
