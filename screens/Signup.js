@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { TextInput, StyleSheet, View, Text, SafeAreaView, ImageBackground, Dimensions } from 'react-native';
+import { TextInput, StyleSheet, View, Text, SafeAreaView, 
+    ImageBackground, Dimensions, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { navigate } from '../navigation/RootNavigation';
 import bgImage from '../assets/Signup_BG.jpg';
@@ -57,6 +58,7 @@ class Signup extends Component {
 
     render() {
         return (
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
             <SafeAreaView style={styles.area}>
                 <ImageBackground source={bgImage} style={styles.bgImage}>
                     <View style={styles.uiBox}>
@@ -124,6 +126,7 @@ class Signup extends Component {
                     </View>
                 </ImageBackground>
             </SafeAreaView>
+        </TouchableWithoutFeedback>
         )
     }
 }

@@ -35,8 +35,8 @@ const Profile = () => {
       <View style={styles.calendar}>
       <Text style={styles.workoutSummary}>Workout Summary</Text>
       {workoutDates.length !== 0? <CalendarHeatmap
-            endDate={new Date("2021-04-30")}
-            numDays={124}
+            endDate={new Date("2021-05-15")}
+            numDays={125}
             colorArray={["#eee", "#bcd6f7", "#656ac6", "#393b99", "#191c5c"]}
             values={workoutDates}
           />: <View/>}
