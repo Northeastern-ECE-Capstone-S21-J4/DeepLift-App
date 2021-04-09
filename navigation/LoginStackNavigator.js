@@ -8,16 +8,27 @@ import BottomTabNavigator from "./TabNavigator";
 const Stack = createStackNavigator();
 
 const screenOptionStyle = {
-    headerShown: false,
-    gesturesEnabled: false
+  title: 'Deep Lift',
+  headerTitleAlign: "center",
+  headerTitleStyle: { 
+    alignSelf: 'center', 
+    marginTop: '5%',
+    flex: 1 
+  },
+  headerStyle: {
+    backgroundColor: "#62a4f5",
+  },
+  headerTintColor: "white",
+  headerBackTitle: "Back",
 };
+
 
 const LoginStackNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={screenOptionStyle}>
+    <Stack.Navigator screenOptions={screenOptionStyle} >
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Signup" component={Signup} />
-      <Stack.Screen name="Application" component={BottomTabNavigator} />
+      <Stack.Screen name="Application" component={BottomTabNavigator} options={{header: () => null}} />
     </Stack.Navigator>
   )
 }
