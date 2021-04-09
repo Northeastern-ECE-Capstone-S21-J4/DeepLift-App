@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { TextInput, StyleSheet, View, Text, SafeAreaView } from 'react-native';
+import { TextInput, StyleSheet, View, Text, SafeAreaView, ImageBackground, Dimensions } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { navigate } from '../navigation/RootNavigation';
+import bgImage from '../assets/Signup_BG.jpg';
 
 global.session;
 
@@ -57,61 +58,71 @@ class Signup extends Component {
     render() {
         return (
             <SafeAreaView style={styles.area}>
-                <View>
-                    <View style={styles.group}>
+                <ImageBackground source={bgImage} style={styles.bgImage}>
+                    <View style={styles.uiBox}>
+                        <View style={styles.group}>
+                            <TextInput 
+                                style={styles.firstNameBox}
+                                placeholder="First Name"
+                                placeholderTextColor="#f2f2f2"
+                                onChangeText={text => this.setState({firstName: text})}
+                            />
+                            <TextInput
+                                placeholder="Last Name"
+                                placeholderTextColor="#f2f2f2"
+                                style={styles.lastNameBox}
+                                onChangeText={text => this.setState({lastName: text})}
+                            />
+                        </View>
                         <TextInput 
-                            style={styles.firstNameBox}
-                            placeholder="First Name"
-                            onChangeText={text => this.setState({firstName: text})}
+                            placeholder="Email Address"
+                            placeholderTextColor="#f2f2f2"
+                            style={styles.textBox}
+                            autoCapitalize="none"
+                            onChangeText={text => this.setState({email: text})}
                         />
                         <TextInput
-                            placeholder="Last Name"
-                            style={styles.lastNameBox}
-                            onChangeText={text => this.setState({lastName: text})}
+                            autoCapitalize="none"
+                            style={styles.textBox}
+                            placeholder="Username"
+                            placeholderTextColor="#f2f2f2"
+                            onChangeText={text => this.setState({userName: text})}
                         />
-                    </View>
-                    <TextInput 
-                        placeholder="Email Address"
-                        style={styles.textBox}
-                        autoCapitalize="none"
-                        onChangeText={text => this.setState({email: text})}
-                    />
-                    <TextInput
-                        autoCapitalize="none"
-                        style={styles.textBox}
-                        placeholder="Username"
-                        onChangeText={text => this.setState({userName: text})}
-                    />
-                    <TextInput 
-                        secureTextEntry={true}
-                        style={styles.textBox}
-                        placeholder="Password"
-                        onChangeText={text => this.setState({pw: text})}
-                    />
-                    <TextInput
-                        secureTextEntry={true}
-                        style={styles.textBox}
-                        placeholder="Confirm Password"
-                        onChangeText={text => this.setState({pw_confirm: text})}
-                    />
-                    <View style={styles.group}>
                         <TextInput 
-                            keyboardType="numeric"
-                            placeholder="Bodyweight"
-                            style={styles.weightBox}
-                            onChangeText={text => this.setState({bodyweight: text})}/>
-                        <TextInput 
-                            keyboardType="numeric"
-                            style={styles.ageBox}
-                            placeholder="Age"
-                            onChangeText={text => this.setState({age: text})}/>
+                            secureTextEntry={true}
+                            style={styles.textBox}
+                            placeholder="Password"
+                            placeholderTextColor="#f2f2f2"
+                            onChangeText={text => this.setState({pw: text})}
+                        />
+                        <TextInput
+                            secureTextEntry={true}
+                            style={styles.textBox}
+                            placeholder="Confirm Password"
+                            placeholderTextColor="#f2f2f2"
+                            onChangeText={text => this.setState({pw_confirm: text})}
+                        />
+                        <View style={styles.group}>
+                            <TextInput 
+                                keyboardType="numeric"
+                                placeholder="Bodyweight"
+                                placeholderTextColor="#f2f2f2"
+                                style={styles.weightBox}
+                                onChangeText={text => this.setState({bodyweight: text})}/>
+                            <TextInput 
+                                keyboardType="numeric"
+                                style={styles.ageBox}
+                                placeholder="Age"
+                                placeholderTextColor="#f2f2f2"
+                                onChangeText={text => this.setState({age: text})}/>
+                        </View>
+                        <TouchableOpacity
+                        style={styles.submitButton} 
+                        onPress={() => this.register()}> 
+                            <Text style={styles.buttonText}>Sign Up</Text>
+                        </TouchableOpacity>
                     </View>
-                    <TouchableOpacity
-                    style={styles.submitButton} 
-                    onPress={() => this.register()}> 
-                        <Text style={styles.buttonText}>Sign Up</Text>
-                    </TouchableOpacity>
-                </View>
+                </ImageBackground>
             </SafeAreaView>
         )
     }
@@ -122,47 +133,60 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "column"
     },
+    uiBox: {
+        flex: 1,
+        paddingTop: "40%",
+        paddingBottom: "50%",
+        flexDirection: "column",
+        alignContent: "center",
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+    },
     textBox: {
-        borderWidth: 1,
-        borderColor: "#AEAEB2",
+        borderWidth: 2,
+        borderColor: "#f2f2f2",
         borderRadius: 5,
         margin: "2.5%",
         textAlign: "center",
+        color: "#f2f2f2",
         height: 30
     },
     firstNameBox: {
-        borderWidth: 1,
-        borderColor: "#AEAEB2",
+        borderWidth: 2,
+        borderColor: "#f2f2f2",
         borderRadius: 5,
         margin: "2.5%",
         textAlign: "center",
+        color: "#f2f2f2",
         height: 30,
         width: "35%"
     },
     lastNameBox: {
-        borderWidth: 1,
-        borderColor: "#AEAEB2",
+        borderWidth: 2,
+        borderColor: "#f2f2f2",
         borderRadius: 5,
         margin: "2.5%",
         textAlign: "center",
+        color: "#f2f2f2",
         height: 30,
         width: "55%"
     },
     weightBox: {
-        borderWidth: 1,
-        borderColor: "#AEAEB2",
+        borderWidth: 2,
+        borderColor: "#f2f2f2",
         borderRadius: 5,
         margin: "2.5%",
         textAlign: "center",
+        color: "#f2f2f2",
         height: 30,
         width: "45%"
     },
     ageBox: {
-        borderWidth: 1,
-        borderColor: "#AEAEB2",
+        borderWidth: 2,
+        borderColor: "#f2f2f2",
         borderRadius: 5,
         margin: "2.5%",
         textAlign: "center",
+        color: "#f2f2f2",
         height: 30,
         width: "45%"
     },
@@ -182,6 +206,9 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: "#ffffff"
+    },
+    bgImage: {
+        height: Dimensions.get('window').height,
     }
 
 })
